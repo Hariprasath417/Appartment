@@ -4,7 +4,7 @@ const houseController = require('../controllers/houseController');
 const { authenticate, authorizeRoles } = require('../middleware/authMiddleware');
 
 router.post('/',authenticate, authorizeRoles('manager'), houseController.createHouse);
-router.get('/', authenticate, authorizeRoles('manager'), houseController.getAllHouses);
-router.get('/:id', authenticate, authorizeRoles('manager'), houseController.getHouseById);
+router.get('/', authenticate, authorizeRoles('manager','tenant','owner'), houseController.getAllHouses);
+router.get('/:id', authenticate, authorizeRoles('manager','tenant','owner'), houseController.getHouseById);
 
 module.exports = router;
